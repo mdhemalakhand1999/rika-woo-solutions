@@ -75,8 +75,8 @@ class Countdown {
      */
     public function add_countdown_to_product_details() {
         $product_id = get_the_ID();
-        $product_object = get_post_meta( $product_id, 'rws_product_objects' );
-        $product_object_arr = isset( $product_object )  ? unserialize( sanitize_text_field( $product_object[0] ) ): array();
+        $product_object = sanitize_text_field( get_post_meta( $product_id, 'rws_product_objects' ) );
+        $product_object_arr = isset( $product_object )  ? unserialize( $product_object[0] ): array();
         $rws_product_single_countdown_from = $product_object_arr['rws_product_single_countdown_from'] ? $product_object_arr['rws_product_single_countdown_from']: '';
         $rws_product_single_countdown_to = $product_object_arr['rws_product_single_countdown_to'] ? $product_object_arr['rws_product_single_countdown_to']: '';
         /**
