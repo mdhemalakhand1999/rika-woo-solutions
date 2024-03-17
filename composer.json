@@ -1,0 +1,15 @@
+{
+    "name": "hr-foundation/rika-woo-solutions",
+    "description": "Rika Woo Solutions is a plugin which will bost your business.",
+    "autoload": {
+        "psr-4": {
+            "Rika_Woo_Solutions\\": "includes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "HR Foundation"
+        }
+    ],
+    "require": {}
+}
