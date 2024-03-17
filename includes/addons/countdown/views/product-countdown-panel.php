@@ -24,43 +24,7 @@
             echo '</div>';
             do_action( 'rws_after_countdown_product_panel_checkbox' );
             do_action( 'rws_before_countdown_product_panel_date_from' );
-            echo '<div class="options_group">';
-            woocommerce_wp_text_input(
-                array(
-                    'id'                => 'rws_product_single_countdown_from',
-                    'value'             => isset( $product_object_info['rws_product_single_countdown_from'] ) ? sanitize_text_field( $product_object_info['rws_product_single_countdown_from'] ): '',
-                    'name'              => 'rws_product_meta[rws_product_single_countdown_from]',
-                    'label'             => __( 'From', 'rika-woo-solutions' ),
-                    'placeholder'       => 'YYYY-MM-DD',
-                    'description'       => __( 'Select date from when it will start coutdown.', 'rika-woo-solutions' ),
-                    'desc_tip'          => true,
-                    'class'             => 'date-picker',
-                    'custom_attributes' => array(
-                        'pattern'       => apply_filters( 'woocommerce_date_input_html_pattern', '[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])' ),
-                    ),
-                )
-            );
-            echo '</div>';
-            do_action( 'rws_after_countdown_product_panel_date_from' );
-            do_action( 'rws_before_countdown_product_panel_date_to' );
-            echo '<div class="options_group">';
-            woocommerce_wp_text_input(
-                array(
-                    'id'                => 'rws_product_single_countdown_to',
-                    'value'             => isset( $product_object_info['rws_product_single_countdown_to'] ) ? sanitize_text_field( $product_object_info['rws_product_single_countdown_to'] ): '',
-                    'name'              => 'rws_product_meta[rws_product_single_countdown_to]',
-                    'label'             => __( 'To', 'rika-woo-solutions' ),
-                    'placeholder'       => 'YYYY-MM-DD',
-                    'description'       => __( 'Select date to when it will end coutdown.', 'rika-woo-solutions' ),
-                    'desc_tip'          => true,
-                    'class'             => 'date-picker',
-                    'custom_attributes' => array(
-                        'pattern'       => apply_filters( 'woocommerce_date_input_html_pattern', '[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])' ),
-                    ),
-                )
-            );
-            echo '</div>';
-            do_action( 'rws_after_countdown_product_panel_date_to' );
+            
             do_action( 'rws_before_countdown_product_panel_discountd_product' );
             echo '<div class="options_group">';
             woocommerce_wp_text_input(

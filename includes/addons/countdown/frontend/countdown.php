@@ -77,8 +77,8 @@ class Countdown {
         $product_id = get_the_ID();
         $product_object = array_map( 'sanitize_text_field', get_post_meta( $product_id, 'rws_product_objects' ));
         $product_object_arr = isset( $product_object[0] )  ? unserialize( $product_object[0] ): array();
-        $rws_product_single_countdown_from = $product_object_arr['rws_product_single_countdown_from'] ? $product_object_arr['rws_product_single_countdown_from']: '';
-        $rws_product_single_countdown_to = $product_object_arr['rws_product_single_countdown_to'] ? $product_object_arr['rws_product_single_countdown_to']: '';
+        $rws_product_single_countdown_from = '2024-03-18';
+        $rws_product_single_countdown_to   = '2024-05-19';
         /**
          * Create a cron for handle schedule So that, timer shows only when date from started.
          */
