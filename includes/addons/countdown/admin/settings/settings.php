@@ -114,7 +114,8 @@ class Settings {
 								$field['id'], //id
 								$field['label'], //title
 								array( Sections::instance(), $field['callback'] ), //callback
-								$option_group // option group
+								$option_group, // option group
+								$key, // option group
 							);
 						}
 					}
