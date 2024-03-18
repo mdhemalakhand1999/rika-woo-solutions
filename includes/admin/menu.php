@@ -85,7 +85,6 @@ class Menu {
      * @return void
      */
     public function load_countdown_settings_page() {
-        echo 'settings';
         ob_start();
         settings_fields( 'rws_settings' );
         do_settings_sections( 'rws_settings' );
