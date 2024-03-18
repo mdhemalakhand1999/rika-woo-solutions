@@ -17,12 +17,10 @@
               if (hours < "10") { hours = "0" + hours; }
               if (minutes < "10") { minutes = "0" + minutes; }
               if (seconds < "10") { seconds = "0" + seconds; }
-        
-              object.find("#days").html(days + "<span>Days</span>");
-              object.find("#hours").html(hours + "<span>Hours</span>");
-              object.find("#minutes").html(minutes + "<span>Minutes</span>");
-              object.find("#seconds").html(seconds + "<span>Seconds</span>");		
-        
+              object.find("#days").html("<span class='label'>Days</span>" + '<span class="rws-count-value">'+ days + '</span>');
+              object.find("#hours").html("<span class='label'>Hours</span>" + '<span class="rws-count-value">'+ hours + '</span>');
+              object.find("#minutes").html("<span class='label'>Minutes</span>" + '<span class="rws-count-value">'+ minutes + '</span>');
+              object.find("#seconds").html("<span class='label'>Seconds</span>" + '<span class="rws-count-value">'+ seconds + '</span>');
           }
         
           

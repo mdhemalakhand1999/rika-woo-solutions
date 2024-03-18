@@ -4,7 +4,6 @@
     if( isset( $product_object_info ) && is_array( $product_object_info ) ) {
         $product_object_info = isset( $product_object_info[0] ) ? unserialize( $product_object_info[0] ): array();
     }
-    error_log( print_r( $product_object_info, true ) );
 ?>
 <div id="rws_product_countdown" class="panel woocommerce_options_panel hidden">
     <div class="options-group">

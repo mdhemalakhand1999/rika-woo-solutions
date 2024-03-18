@@ -78,6 +78,20 @@ class Menu {
         echo ob_get_clean();
     }
     /**
+     * Load countdown settings page
+     * 
+     * @since 1.0.0
+     * 
+     * @return void
+     */
+    public function load_countdown_settings_page() {
+        echo 'settings';
+        ob_start();
+        settings_fields( 'rws_settings' );
+        do_settings_sections( 'rws_settings' );
+        echo ob_get_clean();
+    }
+    /**
      * Get toplevel menu title
      */
     public function get_toplevel_menu_title() {

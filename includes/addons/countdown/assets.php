@@ -50,25 +50,17 @@ class Assets {
      * @return void
      */
     public function frontend_register_scripts() {
-        // load countdown in frontend
         wp_register_style(
-            'flipdown', // handle
-            Helper::essential_assets()->url. 'includes/addons/countdown/assets/vendors/css/flipdown.min.css', // url
+            'rws-countdown-style',
+            Helper::essential_assets()->url. 'includes/addons/countdown/assets/css/style.css', // path
             array(), // dependency
-            RWS_VERSION, // version
-            false // position in footer
-        );
-        wp_enqueue_script(
-            'flipdown',
-            Helper::essential_assets()->url. 'includes/addons/countdown/assets/vendors/js/flipdown.min.js', // url
-            array( 'jquery' ),
-            RWS_VERSION,
-            true  
+            time(),
+            false
         );
         wp_register_script(
             'rws-countdown-main', // handle
             Helper::essential_assets()->url. 'includes/addons/countdown/assets/js/main.js', // path
-            array('jquery', 'flipdown'), // dependency
+            array('jquery'), // dependency
             time(), // version
             true // position in footer
         );
@@ -82,13 +74,11 @@ class Assets {
      */
     public function frontend_enqueue_scripts() {
         // load countdown
-        wp_enqueue_style( 'flipdown' );
-        wp_enqueue_script( 'flipdown' );
-        // only for product details
         if( is_single() && 'product' == get_post_type() ) {
             wp_enqueue_script(
                 'rws-countdown-main' // handle
             );
+            wp_enqueue_style( 'rws-countdown-style' );
         }
     }
     /**

@@ -57,13 +57,18 @@ class Countdown {
         $product_id = get_the_ID();
         $product_object = array_map( 'sanitize_text_field', get_post_meta( $product_id, 'rws_product_objects' ));
         $product_object_arr = isset( $product_object[0] )  ? unserialize( $product_object[0] ): array();
-        $schedule_date_start = get_post_meta($product_id, '_sale_price_dates_from', true);
-        $schedule_date_end = get_post_meta($product_id, '_sale_price_dates_to', true);
+        $schedule_date_start = absint( get_post_meta($product_id, '_sale_price_dates_from', true) );
+        $schedule_date_end = absint( get_post_meta($product_id, '_sale_price_dates_to', true) );
         $date_end = date( 'Y-m-d', $schedule_date_end );
         /**
          * Create a cron for handle schedule So that, timer shows only when date from started.
          */
-        if( ( time() >= $schedule_date_start ) && ( time() <= $schedule_date_end ) ) {
+        if(
+            // if time are matched
+            ( time() >= $schedule_date_start ) && ( time() <= $schedule_date_end ) &&
+            // if counhtdown permission are enabled
+            (isset( $product_object_arr['_enable_single_product_countdown'] ) && 'yes' == sanitize_text_field( $product_object_arr['_enable_single_product_countdown'] ))
+        ) {
             ob_start();
                 echo <<<EOD
                 <div class="rws-timer" data-date="$date_end">

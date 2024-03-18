@@ -34,12 +34,16 @@ class Admin {
      * @return void this constructor will not return anything
      */
     public function __construct() {
-        $menu   = Admin\Menu::instance();
         $assets = Admin\Assets::instance();
         $ajax = Ajax\Ajax::instance();
         if( 1 === (int) get_option( 'rws_feature_active_countdown' ) ) {
             $countdown_hook = Addons\Countdown\Admin\Hooks::instance();
             $countdown_assets = Addons\Countdown\Assets::instance();
+            // only for admin
+            if( is_admin() ) {
+                $settings = Addons\Countdown\Admin\Settings\Settings::instance();
+            }
         }
+        $menu   = Admin\Menu::instance();
     }
 }
