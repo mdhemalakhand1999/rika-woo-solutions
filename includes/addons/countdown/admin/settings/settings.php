@@ -48,35 +48,20 @@ class Settings {
 					'callback' => '', // no callback here
 					'fields'   => array(
 						array(
-							'id'       => 'fws_enable_flash_sale', //id
-							'label'    => __( 'Enable Flash Sale', 'rika-woo-solutions' ),
-							'callback' => 'fws_enable_flash_sale'
+							'id'       => 'rws_enable_flash_sale', //id
+							'label'    => __( 'Enable/Disable Flash Sale', 'rika-woo-solutions' ),
+							'callback' => 'rws_enable_flash_sale'
 						),
 						array(
-							'id'       => 'fws_flash_sale_events', //id
+							'id'       => 'rws_flash_sale_events', //id
 							'label'    => __( 'Sale Events', 'rika-woo-solutions' ),
-							'callback' => 'fws_flash_sale_events'
-						),
-						array(
-							'id'       => 'fws_manage_price_label', //id
-							'label'    => __( 'Manage Price Label', 'rika-woo-solutions' ),
-							'callback' => 'fws_manage_price_label'
-						),
-						array(
-							'id'       => 'fws_override_sale_price', //id
-							'label'    => __( 'Override Sale Price', 'rika-woo-solutions' ),
-							'callback' => 'fws_override_sale_price'
-						),
-						array(
-							'id'       => 'fws_show_countdown_on_product_details', //id
-							'label'    => __( 'Show Countdown On Product Details Page', 'rika-woo-solutions' ),
-							'callback' => 'fws_show_countdown_on_product_details'
+							'callback' => 'rws_flash_sale_events'
 						),
 					)
 				)
 			)
 		);
-		return apply_filters( 'fws_settings_options', $options_arr, $this );
+		return apply_filters( 'rws_settings_options', $options_arr, $this );
 	}
 	/**
 	 * Initialize settings field here

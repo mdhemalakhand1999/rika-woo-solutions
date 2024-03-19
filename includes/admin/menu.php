@@ -84,7 +84,7 @@ class Menu {
      * 
      * @return void
      */
-    public function load_countdown_settings_page() {
+    public function rws_add_countdown_event() {
         ob_start();
         settings_fields( 'rws_settings' );
         do_settings_sections( 'rws_settings' );

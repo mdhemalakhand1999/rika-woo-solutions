@@ -8,7 +8,7 @@
 <div id="rws_product_countdown" class="panel woocommerce_options_panel hidden">
     <div class="options-group">
         <?php
-            do_action( 'rws_before_countdown_product_panel_checkbox' );
+            do_action( 'rws_before_countdown_update_panel_before' );
             echo '<div class="options_group">';
             woocommerce_wp_checkbox(
                 array(
@@ -21,10 +21,7 @@
                 )
             );
             echo '</div>';
-            do_action( 'rws_after_countdown_product_panel_checkbox' );
-            do_action( 'rws_before_countdown_product_panel_date_from' );
-            
-            do_action( 'rws_before_countdown_product_panel_discountd_product' );
+
             echo '<div class="options_group">';
             woocommerce_wp_text_input(
                 array(
@@ -40,8 +37,7 @@
                 )
             );
             echo '</div>';
-            do_action( 'rws_after_countdown_product_panel_discountd_product' );
-            do_action( 'rws_before_countdown_product_panel_already_sold' );
+
             echo '<div class="options_group">';
             woocommerce_wp_text_input(
                 array(
@@ -57,7 +53,7 @@
                 )
             );
             echo '</div>';
-            do_action( 'rws_after_countdown_product_panel_already_sold' );
+            do_action( 'rws_before_countdown_update_panel_after' );
         ?>
     </div>
 </div>

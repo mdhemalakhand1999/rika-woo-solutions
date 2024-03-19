@@ -50,7 +50,8 @@ class Assets {
      */
     public function allowed_pages() {
         $allowed_pages = array(
-            'toplevel_page_rika-woo-solutions'
+            'toplevel_page_rika-woo-solutions',
+            'rws-solutions_page_add_countdown_event',
         );
         return $allowed_pages;
     }
@@ -69,6 +70,13 @@ class Assets {
             RWS_VERSION, // version
             true // position in footer
         );
+        wp_register_script(
+            'rws-main', // handle
+            Helper::essential_assets()->url. 'assets/js/rws-main.js', // path
+            array('jquery'), // dependency
+            RWS_VERSION, // version
+            true // position in footer
+        );
     }
     /**
      * Enqueue css or js files
@@ -80,6 +88,7 @@ class Assets {
     public function enqueue_scripts( $screen ) {
         if( in_array( $screen, $this->allowed_pages() ) ) {
             wp_enqueue_script( 'rws-ajax' );
+            wp_enqueue_script( 'rws-main' );
         }
     }
     /**

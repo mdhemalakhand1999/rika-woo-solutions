@@ -1,5 +1,8 @@
 (function($) {
     $(window).on('load', function() {
+        /**
+         * Working with countdown markup
+         */
         function makeTimer( dateObj, object ) {
               var endTime = new Date(dateObj);			
               endTime = (Date.parse(endTime) / 1000);

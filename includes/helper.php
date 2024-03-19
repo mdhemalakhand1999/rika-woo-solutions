@@ -44,11 +44,11 @@ class Helper {
             'display_func' => 'load_main_template'
         );
         if( 1 === (int) get_option( 'rws_feature_active_countdown' ) ) {
-            $menu[ 'countdown_settings' ] = array(
+            $menu[ 'add_countdown_event' ] = array(
                 'parent_slug'  => RWS_AI_PLUGIN_SLUG,
-                'title'        => _x( 'Countdown Settings', 'Here we will store all essential countdown settings', 'rika-woo-solutions' ),
+                'title'        => _x( 'Create Sale Campain', 'Here we will store all essential countdown settings', 'rika-woo-solutions' ),
                 'capability'   => 'manage_options',
-                'display_func' => 'load_countdown_settings_page'
+                'display_func' => 'rws_add_countdown_event'
             );
         }
         return apply_filters( 'rws/admin_menu_list', $menu );
