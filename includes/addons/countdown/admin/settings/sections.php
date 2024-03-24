@@ -60,7 +60,7 @@ class Sections {
 							<label for="rws_add_event_name"><?php echo esc_html__( 'Event Name', 'rika-woo-solutions' ); ?></label>
 						</div>
 						<div class="rws-group-input">
-							<input class="rws-input-text" type="text" name="rws_add_event_name" id="rws_add_event_name" placeholder="<?php echo esc_attr__( 'Event Name', 'rika-woo-solutions' ); ?>">
+							<input class="rws-input-text" type="text" name="rws_countdown_sale_campaign[rws_add_event_name]" id="rws_add_event_name" placeholder="<?php echo esc_attr__( 'Event Name', 'rika-woo-solutions' ); ?>">
 						</div>
 					</div>
 					<div class="rws-event-flash-sale-group-single">
@@ -68,7 +68,7 @@ class Sections {
 							<label for="rws_add_event_from"><?php echo esc_html__( 'Valid From', 'rika-woo-solutions' ); ?></label>
 						</div>
 						<div class="rws-group-input">
-							<input class="rws-input-text" type="date" name="rws_add_event_from" id="rws_add_event_from" >
+							<input class="rws-input-text" type="date" name="rws_countdown_sale_campaign[rws_add_event_from]" id="rws_add_event_from" >
 							<span class="hint"><?php echo esc_html__( 'Please enter a valid date when flash sale campaign will start', 'rika-woo-solutions' ); ?></span>
 						</div>
 					</div>
@@ -77,21 +77,21 @@ class Sections {
 							<label for="rws_add_event_to"><?php echo esc_html__( 'Valid To', 'rika-woo-solutions' ); ?></label>
 						</div>
 						<div class="rws-group-input">
-							<input class="rws-input-text" type="date" name="rws_add_event_to" id="rws_add_event_to" >
+							<input class="rws-input-text" type="date" name="rws_countdown_sale_campaign[rws_add_event_to]" id="rws_add_event_to" >
 							<span class="hint"><?php echo esc_html__( 'Please enter a valid date when flash sale campaign will end', 'rika-woo-solutions' ); ?></span>
 						</div>
 					</div>
 					<div class="rws-event-flash-sale-group-single">
 						<div class="rws-switcher">
 							<h4 class="rws-heading"><?php echo esc_html__( 'Apply All Products', 'rika-woo-solutions' ); ?></h4>
-							<input class="rws-input-text" type="checkbox" name="rws_apply_all_products" id="rws_apply_all_products">
+							<input class="rws-input-text" type="checkbox" name="rws_countdown_sale_campaign[rws_apply_all_products]" id="rws_apply_all_products">
 							<label for="rws_apply_all_products" class="rws-has-switcher"></label>
 						</div>
 					</div>
 					<div class="rws-event-flash-sale-group-single search_input_parent align-flex-column width-boxed-sm">
 						<h4 class="rws-heading"><?php echo esc_html__( 'Select Categories', 'rika-woo-solutions' ); ?></h4>
 						<input type="text" class="mb-10 mt-10 rws-input-text searchInput" placeholder="Search...">
-						<select class="rws-input-text" name="select_category_for_onsale" id="select_category_for_onsale" multiple>
+						<select class="rws-input-text" name="rws_countdown_sale_campaign[select_category_for_onsale]" id="select_category_for_onsale" multiple>
 							<option value="3"><?php echo esc_html__( 'Black Friday', 'rika-woo-solutions' ); ?></option>
 							<option value="1"><?php echo esc_html__( 'Cap', 'rika-woo-solutions' ); ?></option>
 							<option value="2"><?php echo esc_html__( 'Dog', 'rika-woo-solutions' ); ?></option>
@@ -100,7 +100,7 @@ class Sections {
 					<div class="rws-event-flash-sale-group-single search_input_parent align-flex-column width-boxed-sm">
 						<h4 class="rws-heading"><?php echo esc_html__( 'Select Products', 'rika-woo-solutions' ); ?></h4>
 						<input type="text" class="mb-10 mt-10 rws-input-text searchInput" placeholder="Search...">
-						<select class="rws-input-text" name="select_product_for_onsale" id="select_product_for_onsale" multiple>
+						<select class="rws-input-text" name="rws_countdown_sale_campaign[select_product_for_onsale]" id="select_product_for_onsale" multiple>
 							<option value="product-1"><?php echo esc_html__( 'Onsale', 'rika-woo-solutions' ); ?></option>
 							<option value="product-2"><?php echo esc_html__( 'Buy Sale', 'rika-woo-solutions' ); ?></option>
 							<option value="product-3"><?php echo esc_html__( 'Child 2', 'rika-woo-solutions' ); ?></option>
@@ -112,7 +112,7 @@ class Sections {
 							<label for="rws_event_discount_type"><?php echo esc_html__( 'Discount Type', 'rika-woo-solutions' ); ?></label>
 						</div>
 						<div class="rws-group-input">
-							<select class="rws-input-text pt-0 pb-0" name="rws_event_discount_type" id="rws_event_discount_type">
+							<select class="rws-input-text pt-0 pb-0" name="rws_countdown_sale_campaign[rws_event_discount_type]" id="rws_event_discount_type">
 								<option value="fixed-discount"><?php echo esc_html__( 'Fixed Discount', 'rika-woo-solutions' ); ?></option>
 								<option value="percentage-discount"><?php echo esc_html__( 'Percentage Discount', 'rika-woo-solutions' ); ?></option>
 								<option value="fixed-price"><?php echo esc_html__( 'Fixed Pice', 'rika-woo-solutions' ); ?></option>
@@ -124,28 +124,28 @@ class Sections {
 							<label for="rws_event_discount_value"><?php echo esc_html__( 'Discount Value', 'rika-woo-solutions' ); ?></label>
 						</div>
 						<div class="rws-group-input">
-							<input class="rws-input-text" type="number" name="rws_event_discount_value" id="rws_event_discount_value" >
+							<input class="rws-input-text" type="number" name="rws_countdown_sale_campaign[rws_event_discount_value]" id="rws_event_discount_value" >
 							<span class="hint"><?php echo esc_html__( 'Please enter your discount value', 'rika-woo-solutions' ); ?></span>
 						</div>
 					</div>
 					<div class="rws-event-flash-sale-group-single">
 						<div class="rws-switcher">
 							<h4 class="rws-heading"><?php echo esc_html__( 'Apply Discount For Only Registered Customer', 'rika-woo-solutions' ); ?></h4>
-							<input class="rws-input-text" type="checkbox" name="rws_apply_discount_for_registered_customer" id="rws_apply_discount_for_registered_customer">
+							<input class="rws-input-text" type="checkbox" name="rws_countdown_sale_campaign[rws_apply_discount_for_registered_customer]" id="rws_apply_discount_for_registered_customer">
 							<label for="rws_apply_discount_for_registered_customer" class="rws-has-switcher"></label>
 						</div>
 					</div>
 					<div class="rws-event-flash-sale-group-single">
 						<div class="rws-switcher">
 							<h4 class="rws-heading"><?php echo esc_html__( 'Override Sale Price', 'rika-woo-solutions' ); ?></h4>
-							<input class="rws-input-text" type="checkbox" name="rws_override_sale_price" id="rws_override_sale_price">
+							<input class="rws-input-text" type="checkbox" name="rws_countdown_sale_campaign[rws_override_sale_price]" id="rws_override_sale_price">
 							<label for="rws_override_sale_price" class="rws-has-switcher"></label>
 						</div>
 					</div>
 					<div class="rws-event-flash-sale-group-single">
 						<div class="rws-switcher">
 							<h4 class="rws-heading"><?php echo esc_html__( 'Show Countdown On Product Details Page', 'rika-woo-solutions' ); ?></h4>
-							<input class="rws-input-text" type="checkbox" name="show_countdown_roduct_details" id="show_countdown_roduct_details">
+							<input class="rws-input-text" type="checkbox" name="rws_countdown_sale_campaign[show_countdown_roduct_details]" id="show_countdown_roduct_details">
 							<label for="show_countdown_roduct_details" class="rws-has-switcher"></label>
 						</div>
 					</div>
