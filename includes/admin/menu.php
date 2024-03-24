@@ -85,9 +85,13 @@ class Menu {
      * @return void
      */
     public function rws_add_countdown_event() {
+        $nonce = wp_create_nonce( 'rws_sale_campaign' );
         ob_start();
+        echo '<form method="post" action="options.php">';
+        echo "<input type='hidden' name='rws_sale_campaign' value='$nonce' />";
         settings_fields( 'rws_settings' );
         do_settings_sections( 'rws_settings' );
+        echo '</form>';
         echo ob_get_clean();
     }
     /**

@@ -73,7 +73,6 @@ class Settings {
 	 * @return void
 	 */
 	public function initialize_settings_field() {
-
 		$options_arr = $this->rws_settings_data();
 		if( isset( $options_arr ) && is_array( $options_arr ) ) {
 			foreach( $options_arr as $option_group => $sections ) {
