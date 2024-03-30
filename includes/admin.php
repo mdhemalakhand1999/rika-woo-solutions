@@ -41,14 +41,16 @@ class Admin {
          * If countdown enabled.
          */
         if( 1 === (int) get_option( 'rws_feature_active_countdown' ) ) {
-            $countdown_assets        = Addons\Countdown\Assets                           ::instance();
-            $countdown_hook          = Addons\Countdown\Admin\Hooks                      ::instance();
-            $countdown_ajax          = Addons\Countdown\Admin\Ajax\Countdown_Ajax        ::instance();
-            $countdown_bulk_campaign = Addons\Countdown\Admin\Form_Handle\Create_Campaign::instance();
-            $database_regular        = Addons\Countdown\Admin\Database\Database_Regular  ::instance();
+            $countdown_assets        = Addons\Countdown\Assets::instance();
             // only for admin
             if( is_admin() ) {
-                $settings = Addons\Countdown\Admin\Settings\Settings::instance();
+                $settings                     = Addons\Countdown\Admin\Settings\Settings::instance();
+                $countdown_hook               = Addons\Countdown\Admin\Hooks::instance();
+                $countdown_ajax               = Addons\Countdown\Admin\Ajax\Countdown_Ajax::instance();
+                $schedule_flash_sale          = Addons\Countdown\Admin\Schedule\Schedule_Flash_Sale::instance();
+                $countdown_bulk_campaign      = Addons\Countdown\Admin\Form_Handle\Create_Campaign::instance();
+                $database_regular             = Addons\Countdown\Admin\Database\Database_Regular::instance();
+                $create_countdown             = Addons\Countdown\Admin\Create_Countdown::instance();
             }
         }
     }

@@ -29,16 +29,6 @@ class Countdown {
         return self::$_instance;
     }
     /**
-     * Create a constructor of own class
-     * 
-     * @since 1.0.0
-     * 
-     * @return void
-     */
-    public function __construct() {
-        add_action( 'rws_show_product_countdown_single', array( $this, 'rws_product_countdown_single' ) );
-    }
-    /**
      * Create a function for show countdown in product details page
      * 
      * This functionality will be available when admin will set date from ( woocommerce is first priority and rws plugin is 2nd priority)

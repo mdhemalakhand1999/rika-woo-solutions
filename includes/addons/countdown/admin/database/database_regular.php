@@ -56,12 +56,10 @@ class Database_Regular {
 			sale_event VARCHAR(250),
 			date_from DATE,
 			date_to DATE,
-			apply_all_product INT,
 			selected_categories VARCHAR(500),
 			selected_product_ids VARCHAR(255),
 			discount_type VARCHAR(255),
 			discount_value INT,
-			apply_discount_for_registered_customer INT,
 			countdown_on_product_details INT,
 			PRIMARY KEY (id)
 		) $charset_collate";

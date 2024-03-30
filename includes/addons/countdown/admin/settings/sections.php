@@ -1,5 +1,6 @@
 <?php
 namespace Rika_Woo_Solutions\Addons\Countdown\Admin\Settings;
+use WP_Query;
 if ( ! defined( 'ABSPATH' ) && !class_exists( 'WooCommerce' ) ) {
 	exit;
 }
@@ -51,6 +52,35 @@ class Sections {
 	 * @return void
 	 */
 	public function rws_flash_sale_events() {
+		/**
+		 * Fetch categories
+		 */
+		$taxonomy     = 'product_cat';
+		$orderby      = 'name';  
+		$show_count   = 0;      // 1 for yes, 0 for no
+		$pad_counts   = 0;      // 1 for yes, 0 for no
+		$hierarchical = 1;      // 1 for yes, 0 for no  
+		$title        = '';  
+		$empty        = 0;
+		$args = array(
+			'taxonomy'     => $taxonomy,
+			'orderby'      => $orderby,
+			'show_count'   => $show_count,
+			'pad_counts'   => $pad_counts,
+			'hierarchical' => $hierarchical,
+			'title_li'     => $title,
+			'hide_empty'   => $empty
+		);
+		$all_categories = get_categories( $args );
+		/**
+		 * Fetch products
+		 */
+		$args = array(
+			'posts_per_page' => -1,
+			'post_type'      => 'product',
+			'post_status'    => 'publish'
+		);
+		$products = new WP_Query($args);
 		ob_start();?>
 			<div class="rws-add-sels-event-group">
 				<div class="rws-event-flash-sale-wrapper">
@@ -81,39 +111,35 @@ class Sections {
 							<span class="hint"><?php echo esc_html__( 'Please enter a valid date when flash sale campaign will end', 'rika-woo-solutions' ); ?></span>
 						</div>
 					</div>
-					<div class="rws-event-flash-sale-group-single">
-						<div class="rws-switcher">
-							<h4 class="rws-heading"><?php echo esc_html__( 'Apply All Products', 'rika-woo-solutions' ); ?></h4>
-							<input class="rws-input-text" type="checkbox" name="rws_apply_all_products" id="rws_apply_all_products">
-							<label for="rws_apply_all_products" class="rws-has-switcher"></label>
-						</div>
-					</div>
 					<div class="rws-event-flash-sale-group-single search_input_parent align-flex-column width-boxed-sm">
 						<h4 class="rws-heading"><?php echo esc_html__( 'Select Categories', 'rika-woo-solutions' ); ?></h4>
 						<input type="text" class="mb-10 mt-10 rws-input-text searchInput" placeholder="Search...">
+						<?php if( !empty( $all_categories ) ) : ?>
 						<select class="rws-input-text" name="select_category_for_onsale[]" id="select_category_for_onsale" multiple>
-							<option value="3"><?php echo esc_html__( 'Black Friday', 'rika-woo-solutions' ); ?></option>
-							<option value="1"><?php echo esc_html__( 'Cap', 'rika-woo-solutions' ); ?></option>
-							<option value="2"><?php echo esc_html__( 'Dog', 'rika-woo-solutions' ); ?></option>
+							<?php foreach( $all_categories as $index => $cat ) : ?>
+								<option value="<?php echo esc_attr( $cat->term_id ); ?>"><?php echo esc_html( $cat->name ); ?></option>
+							<?php endforeach; ?>
 						</select>
+						<?php endif; ?>
 					</div>
+					<?php if( $products->have_posts() ) : ?>
 					<div class="rws-event-flash-sale-group-single search_input_parent align-flex-column width-boxed-sm">
 						<h4 class="rws-heading"><?php echo esc_html__( 'Select Products', 'rika-woo-solutions' ); ?></h4>
 						<input type="text" class="mb-10 mt-10 rws-input-text searchInput" placeholder="Search...">
 						<select class="rws-input-text" name="select_product_for_onsale[]" id="select_product_for_onsale" multiple>
-							<option value="product-1"><?php echo esc_html__( 'Onsale', 'rika-woo-solutions' ); ?></option>
-							<option value="product-2"><?php echo esc_html__( 'Buy Sale', 'rika-woo-solutions' ); ?></option>
-							<option value="product-3"><?php echo esc_html__( 'Child 2', 'rika-woo-solutions' ); ?></option>
-							<option value="product-4"><?php echo esc_html__( 'Old', 'rika-woo-solutions' ); ?></option>
+							<?php while( $products->have_posts() ) : $products->the_post(); ?>
+								<option value="<?php echo get_the_ID(); ?>"><?php echo get_the_title(); ?></option>
+							<?php endwhile; ?>
 						</select>
 					</div>
+					<?php endif; ?>
 					<div class="rws-event-flash-sale-group-single">
 						<div class="rws-group-label">
 							<label for="rws_event_discount_type"><?php echo esc_html__( 'Discount Type', 'rika-woo-solutions' ); ?></label>
 						</div>
 						<div class="rws-group-input">
 							<select class="rws-input-text pt-0 pb-0" name="rws_event_discount_type" id="rws_event_discount_type">
-								<option value="fixed-discount" ><?php echo esc_html__( 'Fixed Discount', 'rika-woo-solutions' ); ?></option>
+								<option value="fixed-discount" ><?php echo esc_html__( 'Fixed Discount(percentage)', 'rika-woo-solutions' ); ?></option>
 								<option value="percentage-discount" selected><?php echo esc_html__( 'Percentage Discount', 'rika-woo-solutions' ); ?></option>
 								<option value="fixed-price"><?php echo esc_html__( 'Fixed Pice', 'rika-woo-solutions' ); ?></option>
 							</select>
@@ -126,13 +152,6 @@ class Sections {
 						<div class="rws-group-input">
 							<input class="rws-input-text" type="number" name="rws_event_discount_value" id="rws_event_discount_value" >
 							<span class="hint"><?php echo esc_html__( 'Please enter your discount value', 'rika-woo-solutions' ); ?></span>
-						</div>
-					</div>
-					<div class="rws-event-flash-sale-group-single">
-						<div class="rws-switcher">
-							<h4 class="rws-heading"><?php echo esc_html__( 'Apply Discount For Only Registered Customer', 'rika-woo-solutions' ); ?></h4>
-							<input class="rws-input-text" type="checkbox" name="rws_apply_discount_for_registered_customer" id="rws_apply_discount_for_registered_customer">
-							<label for="rws_apply_discount_for_registered_customer" class="rws-has-switcher"></label>
 						</div>
 					</div>
 					<div class="rws-event-flash-sale-group-single">

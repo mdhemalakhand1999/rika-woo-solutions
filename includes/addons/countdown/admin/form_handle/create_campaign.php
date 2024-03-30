@@ -1,5 +1,6 @@
 <?php
 namespace Rika_Woo_Solutions\Addons\Countdown\Admin\Form_Handle;
+use WP_Query;
 if ( ! defined( 'ABSPATH' ) && !class_exists( 'WooCommerce' ) ) {
 	exit;
 }
@@ -74,19 +75,45 @@ class Create_Campaign {
                 wp_die( __( 'Please insert event to', 'rika-woo-solutions' ), __( 'Date Required', 'rika-woo-solutions' ) );
                 return;
             }
-            error_log( print_r( $_POST['select_category_for_onsale'], true ) );
             $rws_countdown_enable_toggle = isset($_POST['rws_countdown_enable_toggle']) && 'on' === sanitize_text_field( $_POST['rws_countdown_enable_toggle'] ) ? 1 : 0;
             $rws_add_event_name = sanitize_text_field( $_POST['rws_add_event_name'] );
             $rws_add_event_from = sanitize_text_field( $_POST['rws_add_event_from'] );
             $rws_add_event_to = sanitize_text_field( $_POST['rws_add_event_to'] );
-            $rws_apply_all_products = isset($_POST['rws_apply_all_products']) && 'on' === sanitize_text_field( $_POST['rws_apply_all_products'] ) ? 1 : 0;
             $select_category_for_onsale = isset($_POST['select_category_for_onsale']) ? sanitize_text_field( serialize( $_POST['select_category_for_onsale'] ) ) : '';
             $select_product_for_onsale = isset($_POST['select_product_for_onsale']) ? sanitize_text_field( serialize( $_POST['select_product_for_onsale'] ) ) : '';
             $rws_event_discount_type = isset($_POST['rws_event_discount_type']) ? sanitize_text_field( $_POST['rws_event_discount_type'] ) : '';
             $rws_event_discount_value = isset($_POST['rws_event_discount_value']) ? absint( $_POST['rws_event_discount_value'] ) : 0;
-            $rws_apply_discount_for_registered_customer = isset($_POST['rws_apply_discount_for_registered_customer']) && 'on' === sanitize_text_field( $_POST['rws_apply_discount_for_registered_customer'] ) ? 1 : 0;
             $show_countdown_product_details             = isset($_POST['show_countdown_product_details']) && 'on' === sanitize_text_field( $_POST['show_countdown_product_details'] ) ? 1 : 0;
-            
+            /**
+             * Add product on countdown based on given data
+             */
+            /**
+             * get product info from category
+             */
+            $args = array(
+                'post_type' => 'product',
+                'posts_per_page' => -1,
+                'tax_query' => array(
+                    'taxonomy' => 'product_cat',
+                    'field'    => 'term_id',
+                    'terms'    => unserialize( $select_category_for_onsale ),
+                )
+            );
+            $products = new WP_Query( $args );
+            $event_from_time = strtotime( $rws_add_event_from );
+            $event_to_time = strtotime( $rws_add_event_to );
+            $discount_price = $rws_event_discount_value;
+            if( $products->have_posts() ) {
+                while( $products->have_posts() ) {
+                    $products->the_post();
+                    $product_id = get_the_ID();
+                    $current_sale_price = absint( get_post_meta( $product_id, '_sale_price', true ) );
+                    $new_sale_price = 330;
+                    update_post_meta( $product_id, '_sale_price', $new_sale_price );
+                    echo 'product udpated';
+                }
+                wp_reset_postdata();
+            }
             /**
              * Insert data on database
              * 
@@ -98,12 +125,10 @@ class Create_Campaign {
                 'sale_event'                             => $rws_add_event_name,
                 'date_from'                              => $rws_add_event_from,
                 'date_to'                                => $rws_add_event_to,
-                'apply_all_product'                      => $rws_apply_all_products,
                 'selected_categories'                    => $select_category_for_onsale,
                 'selected_product_ids'                   => $select_product_for_onsale,
                 'discount_type'                          => $rws_event_discount_type,
                 'discount_value'                         => $rws_event_discount_value,
-                'apply_discount_for_registered_customer' => $rws_apply_discount_for_registered_customer,
                 'countdown_on_product_details'           => $show_countdown_product_details,
             );
             $data_for_table = apply_filters( 'rws_flash_event_db_data', $data );
@@ -113,12 +138,10 @@ class Create_Campaign {
                 '%s', //maps for sale_event
                 '%s', //maps for date_from
                 '%s', //maps for date_to
-                '%d', //maps for apply_all_product
                 '%s', //maps for selected_categories
                 '%s', //maps for selected_product_ids
                 '%s', //maps for discount_type
                 '%d', //maps for discount_value
-                '%d', //maps for apply_discount_for_registered_customer
                 '%d', //maps for countdown_on_product_details
             );
             $wpdb->insert(
